@@ -667,6 +667,7 @@ valid_sample_time(RCL_Instance instance, struct timespec *sample_time)
   struct timespec now;
   double diff;
 
+#if 0 
   LCL_ReadCookedTime(&now, NULL);
   diff = UTI_DiffTimespecsToDouble(&now, sample_time);
 
@@ -676,6 +677,10 @@ valid_sample_time(RCL_Instance instance, struct timespec *sample_time)
               UTI_TimespecToString(sample_time), diff);
     return 0;
   }
+#else
+  #warning "valid_sample_time() disabled"
+  DEBUG_LOG ("modified, valid_sample_time() disabled");
+#endif
 
   return 1;
 }
